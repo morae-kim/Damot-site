@@ -184,19 +184,16 @@
   /* ---------- gallery ---------- */
   .gallery{padding:110px 0 100px;}
   .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    grid-auto-rows:200px;
-    gap:12px;
+    columns:3 260px;
+    column-gap:12px;
   }
-  .gallery-grid figure{margin:0; overflow:hidden; background:var(--paper-2); position:relative;}
-  .gallery-grid img{width:100%; height:100%; object-fit:cover; display:block;}
-  .g-wide{grid-column:span 2; grid-row:span 2;}
-  .g-tall{grid-row:span 2;}
-  @media (max-width:760px){
-    .gallery-grid{grid-template-columns:repeat(2, 1fr); grid-auto-rows:150px;}
-    .g-wide{grid-column:span 2; grid-row:span 1;}
-    .g-tall{grid-row:span 1;}
+  .gallery-grid figure{
+    margin:0 0 12px; overflow:hidden; background:var(--paper-2);
+    break-inside:avoid; -webkit-column-break-inside:avoid;
+  }
+  .gallery-grid img{width:100%; height:auto; display:block;}
+  @media (max-width:700px){
+    .gallery-grid{columns:2 160px;}
   }
 
   /* ---------- works ---------- */
@@ -231,6 +228,8 @@
   .work-card details summary::after{content:" 펼치기 +";}
   .work-card details[open] summary::after{content:" 접기 –";}
   .work-card details p{margin-top:12px; font-size:0.92rem; color:#463f38; line-height:1.75;}
+  .work-photo{overflow:hidden;}
+  .work-photo img{width:100%; height:100%; object-fit:cover; display:block; min-height:220px;}
   @media (max-width:700px){
     .work-grid{grid-template-columns:1fr;}
   }
@@ -359,6 +358,9 @@
           <div class="subtitle">꽃 피는 것을 시샘하다</div>
           <details><summary>소개</summary><p>겨울의 끝자락, 봄이 오는 길목에서 꽃이 피는 것을 시샘하는 우수의 정서를 담았습니다. 거문고와 가야금의 조화로운 선율이 황량한 겨울의 끝과 따뜻한 봄의 시작을 그리며, 해금병창의 멜로디가 꽃이 피어나는 순간의 아름다움을 표현합니다.</p></details>
         </div>
+        <div class="work-photo">
+          <img src="images/history-mugyewon.jpg" alt="다못 연주 장면" loading="lazy">
+        </div>
       </div>
     </div>
 
@@ -422,13 +424,13 @@
   <div class="wrap">
     <div class="kicker"><span class="bar"></span><h2>갤러리</h2></div>
     <div class="gallery-grid">
-      <figure class="g-wide">
+      <figure>
         <img src="images/gallery-hanbok.jpg" alt="한복을 입은 다못 단원들" loading="lazy">
       </figure>
       <figure>
         <img src="images/gallery-immersive.jpg" alt="미디어 파사드와 함께한 다못 공연" loading="lazy">
       </figure>
-      <figure class="g-tall">
+      <figure>
         <img src="images/gallery-hanok.jpg" alt="한옥에서의 다못 합주" loading="lazy">
       </figure>
       <figure>
@@ -437,10 +439,10 @@
       <figure>
         <img src="images/gallery-session.jpg" alt="합주 중인 다못" loading="lazy">
       </figure>
-      <figure class="g-tall">
+      <figure>
         <img src="images/gallery-sunset.jpg" alt="노을 속 야외 공연" loading="lazy">
       </figure>
-      <figure class="g-wide">
+      <figure>
         <img src="images/gallery-outdoor.jpg" alt="야외 축제 무대에 선 다못" loading="lazy">
       </figure>
     </div>
