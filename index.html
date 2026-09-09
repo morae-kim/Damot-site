@@ -156,6 +156,33 @@
   @media (max-width:760px){
     .intro-grid{grid-template-columns:1fr; gap:36px;}
     .intro-figure{order:-1; aspect-ratio:16/9;}
+
+    /* Make hero background show whole image without cropping on small screens */
+    .hero{
+      background-size:contain !important;
+      background-position:center top !important;
+      padding:80px 24px 40px;
+      min-height:60vh;
+    }
+    .hero::before, .hero::after{display:none;}
+
+    /* Ensure the intro/team photo preserves its aspect and isn't cropped */
+    .intro-figure{
+      aspect-ratio:auto;
+      background-position:center;
+    }
+    .intro-figure img{
+      width:100%; height:auto; object-fit:contain;
+      display:block;
+    }
+
+    /* Keep the works section heading on a single readable line */
+    .works .kicker h2{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-size:1.25rem;
+    }
   }
 
   /* ---------- performance / pull quote ---------- */
