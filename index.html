@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다못 — 국악현악앙상블</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211D1B;
+    --paper:#F6F1E3;
+    --paper-2:#EFE7D3;
+    --red:#9A2B25;
+    --gold:#AD8A4E;
+    --gold-soft:#D8C69C;
+    --white:#FBF8F1;
+    --spring:#6B8F5A;
+    --summer:#B23A2E;
+    --autumn:#B0793A;
+    --winter:#35526E;
+    --serif:'Noto Serif KR', serif;
+    --sans:'Noto Sans KR', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+  section{position:relative;}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,241,227,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(33,29,27,0.08);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+  }
+  .nav-logo{font-family:var(--serif); font-weight:700; font-size:1.15rem; letter-spacing:0.08em; color:var(--red);}
+  .nav-links{display:flex; gap:22px; overflow-x:auto; font-size:0.88rem; color:var(--ink); white-space:nowrap;}
+  .nav-links a{opacity:0.72; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      linear-gradient(180deg, rgba(20,16,14,0.72) 0%, rgba(20,16,14,0.55) 45%, rgba(20,16,14,0.88) 100%),
+      url('images/hero-stage.jpg') center 35%/cover no-repeat,
+      radial-gradient(circle at 50% 30%, #2c2521 0%, #1c1714 62%, #14100e 100%);
+    color:var(--white);
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:120px 24px 80px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:50%; left:50%;
+    width:640px; height:640px;
+    border:1px solid rgba(173,138,78,0.35);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; top:50%; left:50%;
+    width:840px; height:840px;
+    border:1px solid rgba(173,138,78,0.16);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  .hero-eyebrow{
+    position:relative; font-size:0.95rem; letter-spacing:0.35em; color:var(--gold-soft);
+    margin-bottom:26px; font-weight:300;
+  }
+  .hero h1{
+    position:relative;
+    font-family:var(--serif); font-weight:900;
+    font-size:clamp(4.2rem, 13vw, 8.5rem);
+    letter-spacing:0.18em;
+    color:var(--white);
+    text-shadow:0 0 60px rgba(173,138,78,0.35);
+  }
+  .hero-sub{
+    position:relative;
+    margin-top:22px; font-size:clamp(1rem, 2.4vw, 1.25rem);
+    color:var(--gold-soft); font-weight:400;
+  }
+  .hero-tagline{
+    position:relative;
+    margin-top:44px; font-size:0.95rem; color:rgba(251,248,241,0.6);
+    max-width:420px; line-height:1.9;
+  }
+  .hero-scroll{
+    position:relative;
+    margin-top:64px; width:1px; height:52px;
+    background:linear-gradient(to bottom, var(--gold), transparent);
+    animation:pulse-scroll 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse-scroll{
+    0%,100%{opacity:0.35;} 50%{opacity:1;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-scroll{animation:none;}
+  }
+
+  /* ---------- section heading ---------- */
+  .kicker{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:34px;
+  }
+  .kicker .bar{width:34px; height:2px; background:var(--red);}
+  .kicker h2{
+    font-family:var(--serif); font-weight:700; font-size:1.7rem; color:var(--red);
+  }
+
+  /* ---------- intro ---------- */
+  .intro{padding:120px 0 90px;}
+  .intro-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:64px; align-items:start;}
+  .intro-figure{
+    aspect-ratio:1/1.05;
+    background:var(--paper-2);
+    border:1px solid rgba(173,138,78,0.4);
+    overflow:hidden;
+  }
+  .intro-figure img{width:100%; height:100%; object-fit:cover;}
+
+  /* ---------- full-bleed banner photo ---------- */
+  .banner{
+    width:100%; height:clamp(280px, 42vw, 480px);
+    overflow:hidden;
+  }
+  .banner img{width:100%; height:100%; object-fit:cover; object-position:center 22%;}
+  .intro-text p{font-size:1.05rem; max-width:56ch; margin-bottom:20px; color:#3a332e;}
+  .intro-text .lead{font-family:var(--serif); font-size:1.28rem; font-weight:500; color:var(--ink); margin-bottom:24px; line-height:1.75;}
+  .meta-line{display:flex; gap:28px; margin-top:36px; flex-wrap:wrap;}
+  .meta-item{font-size:0.85rem; color:var(--ink); border-left:2px solid var(--gold); padding-left:12px;}
+  .meta-item b{display:block; font-family:var(--serif); font-size:1rem; margin-bottom:2px;}
+
+  @media (max-width:760px){
+    .intro-grid{grid-template-columns:1fr; gap:36px;}
+    .intro-figure{order:-1; aspect-ratio:16/9;}
+  }
+
+  /* ---------- performance / pull quote ---------- */
+  .performance{
+    background:var(--red);
+    color:var(--white);
+    padding:110px 0;
+  }
+  .performance .kicker h2{color:var(--gold-soft);}
+  .performance .kicker .bar{background:var(--gold-soft);}
+  .quote{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(1.5rem, 3.2vw, 2.15rem);
+    line-height:1.65; max-width:760px;
+    margin-bottom:38px;
+  }
+  .performance p.body{max-width:64ch; font-size:1.02rem; color:rgba(251,248,241,0.88); margin-bottom:16px;}
+  .performance-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:center;}
+  .performance-photo{border:1px solid rgba(216,198,156,0.45); overflow:hidden;}
+  .performance-photo img{width:100%; display:block; object-fit:cover; aspect-ratio:4/5;}
+  @media (max-width:800px){
+    .performance-grid{grid-template-columns:1fr;}
+    .performance-photo{order:-1; max-width:320px; margin:0 auto;}
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery{padding:110px 0 100px;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr;
+    grid-template-rows:auto auto;
+    gap:14px;
+  }
+  .gallery-grid figure{margin:0; overflow:hidden; background:var(--paper-2);}
+  .gallery-grid img{width:100%; height:100%; object-fit:cover; display:block;}
+  .g-hanbok{grid-row:1 / 3;}
+  .g-hanbok img{aspect-ratio:auto; height:100%;}
+  .g-laugh img, .g-session img{aspect-ratio:4/3;}
+  figcaption{font-size:0.8rem; color:#6b6259; padding:10px 2px 0;}
+  @media (max-width:760px){
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .g-hanbok{grid-row:auto; grid-column:1 / 3;}
+    .g-hanbok img{aspect-ratio:16/9;}
+  }
+
+  /* ---------- works ---------- */
+  .works{padding:120px 0 100px;}
+  .season-group{margin-bottom:56px;}
+  .season-label{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--serif); font-size:1.05rem; font-weight:700; margin-bottom:18px;
+  }
+  .season-dot{width:11px; height:11px; border-radius:50%;}
+  .season-spring .season-dot{background:var(--spring);}
+  .season-summer .season-dot{background:var(--summer);}
+  .season-autumn .season-dot{background:var(--autumn);}
+  .season-winter .season-dot{background:var(--winter);}
+  .work-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(33,29,27,0.12);}
+  .work-card{
+    background:var(--paper);
+    padding:28px 26px;
+    border-top:3px solid var(--ink);
+  }
+  .season-spring .work-card{border-top-color:var(--spring);}
+  .season-summer .work-card{border-top-color:var(--summer);}
+  .season-autumn .work-card{border-top-color:var(--autumn);}
+  .season-winter .work-card{border-top-color:var(--winter);}
+  .work-card .track{font-size:0.78rem; letter-spacing:0.06em; color:#7a7267; margin-bottom:8px;}
+  .work-card h3{font-family:var(--serif); font-size:1.3rem; font-weight:700; margin-bottom:4px;}
+  .work-card .subtitle{font-size:0.95rem; color:#5a5049; margin-bottom:14px; font-weight:500;}
+  .work-card details summary{
+    cursor:pointer; font-size:0.85rem; color:var(--red); list-style:none; font-weight:500;
+  }
+  .work-card details summary::-webkit-details-marker{display:none;}
+  .work-card details summary::after{content:" 펼치기 +";}
+  .work-card details[open] summary::after{content:" 접기 –";}
+  .work-card details p{margin-top:12px; font-size:0.92rem; color:#463f38; line-height:1.75;}
+  @media (max-width:700px){
+    .work-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- history timeline ---------- */
+  .history{background:var(--paper-2); padding:110px 0;}
+  .timeline{position:relative; padding-left:26px; border-left:1px solid rgba(173,138,78,0.5);}
+  .t-item{position:relative; padding:0 0 34px 26px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-31px; top:5px;
+    width:9px; height:9px; border-radius:50%; background:var(--gold); border:2px solid var(--paper-2);
+  }
+  .t-date{font-family:var(--serif); font-weight:700; color:var(--red); font-size:0.95rem; margin-bottom:4px;}
+  .t-org{font-size:0.85rem; color:#6b6259; margin-bottom:2px;}
+  .t-desc{font-size:0.98rem;}
+
+  /* ---------- video ---------- */
+  .videos{padding:110px 0;}
+  .video-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  .video-box{background:var(--ink);}
+  .video-frame{position:relative; padding-bottom:56.25%; height:0; overflow:hidden;}
+  .video-frame iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0;}
+  @media (max-width:760px){ .video-grid{grid-template-columns:1fr;} }
+
+  /* ---------- contact ---------- */
+  .contact{
+    background:#1c1714; color:var(--white);
+    padding:110px 0 70px;
+    text-align:center;
+  }
+  .contact .kicker{justify-content:center;}
+  .contact h2{font-family:var(--serif); font-size:clamp(1.9rem,4vw,2.6rem); font-weight:700; margin-bottom:20px;}
+  .contact p{color:rgba(251,248,241,0.65); max-width:52ch; margin:0 auto 44px;}
+  .contact-links{display:flex; justify-content:center; gap:18px; flex-wrap:wrap;}
+  .contact-btn{
+    border:1px solid var(--gold-soft); padding:14px 30px;
+    font-size:0.95rem; letter-spacing:0.02em; transition:background .2s, color .2s;
+  }
+  .contact-btn:hover{background:var(--gold-soft); color:var(--ink);}
+  footer{
+    background:#1c1714; color:rgba(251,248,241,0.4);
+    text-align:center; font-size:0.8rem; padding:26px 0 40px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">다못</div>
+    <div class="nav-links">
+      <a href="#intro">소개</a>
+      <a href="#performance">공연</a>
+      <a href="#works">작품</a>
+      <a href="#gallery">갤러리</a>
+      <a href="#history">이력</a>
+      <a href="#videos">영상</a>
+      <a href="#contact">연락처</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">국악현악앙상블</div>
+  <h1>다못</h1>
+  <div class="hero-sub">거문고 · 가야금 · 해금</div>
+  <p class="hero-tagline">더불어, 견주어 — 한국의 24절기, 세 개의 현이 하나의 울림으로</p>
+  <div class="hero-scroll"></div>
+</header>
+
+<section class="intro" id="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-figure">
+      <img src="images/instruments-empty.jpg" alt="다못의 거문고, 가야금, 해금 — 연주 전의 무대" loading="lazy">
+    </div>
+    <div class="intro-text">
+      <div class="kicker"><span class="bar"></span><h2>팀 소개</h2></div>
+      <p class="lead">다못은 거문고, 가야금, 해금 3인조로 구성된 국악 현악 앙상블입니다.</p>
+      <p>'다못'은 '더불어, 견주어'라는 뜻의 순우리말로, 세 명의 연주자가 서로 어우러지고 견주며 만들어가는 음악을 상징합니다.</p>
+      <p>다못은 사계절 속에서 나누는 세 여자친구의 이야기를 음악으로 전합니다. 한국의 24절기 속 문화와 풍경이 세 개의 현악기가 만들어내는 하나의 울림을 통해 전달됩니다.</p>
+      <div class="meta-line">
+        <div class="meta-item"><b>편성</b>거문고 · 가야금 · 해금</div>
+        <div class="meta-item"><b>레퍼토리</b>이십사분의 이십사</div>
+        <div class="meta-item"><b>형식</b>즉흥연주 기반 창작곡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <img src="images/trio-formal.jpg" alt="국악현악앙상블 다못 — 거문고, 가야금, 해금 3인조" loading="lazy">
+</div>
+
+<section class="performance" id="performance">
+  <div class="wrap performance-grid">
+    <div>
+      <div class="kicker"><span class="bar"></span><h2>공연 소개</h2></div>
+      <p class="quote">입춘의 새싹이 돋아나는 순간부터 대한의 깊은 겨울까지, 절기마다의 고유한 멋과 감동을 세 현악기의 울림으로 표현합니다.</p>
+      <p class="body">인간과 자연이 만들어낸 24절기의 이야기가 세 연주자의 소리와 어우러져 한 해의 풍경을 생생하게 전달합니다. 즉흥연주를 통해 한국의 24절기의 흐름을 담아낸 공연으로, 자연과 인간이 하나 되어 만들어낸 시간의 예술입니다.</p>
+      <p class="body">변화하는 계절 속에서 우리의 삶을 되새기며, 자연을 담은 현악기의 호흡과 선율이 관객의 마음을 울립니다.</p>
+    </div>
+    <div class="performance-photo">
+      <img src="images/performance-inset.jpg" alt="다못 무대 공연 실황" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><h2>작품 소개 — 24절기 프로젝트</h2></div>
+
+    <div class="season-group season-spring">
+      <div class="season-label"><span class="season-dot"></span>봄</div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="track">이십사분의 이</div>
+          <h3>우수</h3>
+          <div class="subtitle">꽃 피는 것을 시샘하다</div>
+          <details><summary>소개</summary><p>겨울의 끝자락, 봄이 오는 길목에서 꽃이 피는 것을 시샘하는 우수의 정서를 담았습니다. 거문고와 가야금의 조화로운 선율이 황량한 겨울의 끝과 따뜻한 봄의 시작을 그리며, 해금병창의 멜로디가 꽃이 피어나는 순간의 아름다움을 표현합니다.</p></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="season-group season-summer">
+      <div class="season-label"><span class="season-dot"></span>여름</div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="track">이십사분의 십</div>
+          <h3>하지</h3>
+          <div class="subtitle">태양이 멈춰선 곳</div>
+          <details><summary>소개</summary><p>태양이 가장 높이 떠오르는 하지의 절정을 음악으로 풀어냈습니다. 강렬한 리듬과 밝은 선율이 태양의 에너지를 상징하며 여름의 활기를 전달합니다. 가야금과 거문고의 힘찬 연주에, 뜨거운 태양에 해금의 늘어지는 듯한 표현이 더해져 하지의 계절을 표현해 냅니다.</p></details>
+        </div>
+        <div class="work-card">
+          <div class="track">이십사분의 십일</div>
+          <h3>소서</h3>
+          <div class="subtitle">비의 장막이 드리우다</div>
+          <details><summary>소개</summary><p>여름 장마가 시작되는 소서는 비의 장막을 청각화한 곡입니다. 장마의 시작을 알리는 비의 소리를 그려낸 가야금과 거문고의 깊은 음색, 해금병창의 애잔한 멜로디가 어우러져 비 오는 날의 정취를 느끼게 합니다.</p></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="season-group season-autumn">
+      <div class="season-label"><span class="season-dot"></span>가을</div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="track">이십사분의 십사</div>
+          <h3>처서</h3>
+          <div class="subtitle">사유의 계절</div>
+          <details><summary>소개</summary><p>처서는 여름의 끝자락과 가을의 시작을 의미하며, 사유의 계절로 불립니다. 가야금의 섬세한 선율과 깊은 음색을 통해 사유의 깊이와 계절의 변화를 표현하며, 여름의 열기에서 가을의 서늘함으로 넘어가는 순간을 경험하게 합니다.</p></details>
+        </div>
+        <div class="work-card">
+          <div class="track">이십사분의 십육</div>
+          <h3>추분</h3>
+          <div class="subtitle">낮과 밤의 추격전</div>
+          <details><summary>소개</summary><p>추분은 낮과 밤이 같은 길이가 되는 시기입니다. 낮과 밤이 서로를 추격하는 듯한 긴장감과 균형을 음악적으로 표현했습니다. 거문고와 가야금의 빠른 템포와 해금병창의 역동적인 멜로디가 그 긴장감을 잘 나타냅니다.</p></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="season-group season-winter">
+      <div class="season-label"><span class="season-dot"></span>겨울</div>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="track">이십사분의 이십이</div>
+          <h3>동지</h3>
+          <div class="subtitle">깊은 밤의 축제</div>
+          <details><summary>소개</summary><p>동지는 밤이 가장 긴 날로, 깊은 밤의 도깨비 축제를 연상케 하는 곡입니다. 해금병창의 미스터리한 멜로디와 거문고의 낮은 울림이 깊은 밤의 분위기를 조성하며, 가야금의 선율이 축제의 희망찬 분위기를 더합니다. 동짓날 밤 도깨비들이 사람들을 놀래키고 즐기는 모습을 생생하게 표현하며, 전통 속신과 풍습을 음악으로 재현합니다.</p></details>
+        </div>
+        <div class="work-card">
+          <div class="track">이십사분의 이십사</div>
+          <h3>대한</h3>
+          <div class="subtitle">혹한의 절정</div>
+          <details><summary>소개</summary><p>대한은 겨울의 절정으로, 혹한의 시기를 음악으로 표현했습니다. 거문고의 리듬과 가야금의 잔잔한 선율로 혹한의 추위를 나타내며, 해금병창의 음색이 그 속에서 피어나는 눈꽃들을 표현합니다. 빙판 위 설산의 고요하면서도 매서운 느낌을 더합니다.</p></details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><h2>갤러리</h2></div>
+    <div class="gallery-grid">
+      <figure class="g-hanbok">
+        <img src="images/gallery-hanbok.jpg" alt="한복을 입은 다못 단원들" loading="lazy">
+      </figure>
+      <figure class="g-laugh">
+        <img src="images/gallery-laugh.jpg" alt="다못 단원들의 모습" loading="lazy">
+      </figure>
+      <figure class="g-session">
+        <img src="images/gallery-session.jpg" alt="합주 중인 다못" loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="history" id="history">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><h2>공연 이력</h2></div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">2025.08.14</div>
+        <div class="t-org">서울남산국악당</div>
+        <div class="t-desc">남산 야광명월 [다못]</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.11.11</div>
+        <div class="t-org">영암군</div>
+        <div class="t-desc">농업인의 날 [다못] 초청</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.11.10</div>
+        <div class="t-org">2024 문화가 있는날</div>
+        <div class="t-desc">[다못] 초청</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.10.30</div>
+        <div class="t-org">영암군</div>
+        <div class="t-desc">군민의 날 [다못] 초청</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.10.20</div>
+        <div class="t-org">무계원 x 정동극장</div>
+        <div class="t-desc">[다못] 초청</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.10.13</div>
+        <div class="t-org">2024 남도문예르네상스 영암군 특화사업</div>
+        <div class="t-desc">'영암을 다담다 (청년을 다담다)' — 다못 x 뮤즈챔버오케스트라</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.09.21</div>
+        <div class="t-org">영암군</div>
+        <div class="t-desc">청년의 날 [다못] 초청</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024.08.23</div>
+        <div class="t-org">청춘만발</div>
+        <div class="t-desc">'이십사분의 이십사' [다못]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="videos" id="videos">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><h2>참고 영상</h2></div>
+    <div class="video-grid">
+      <div class="video-box">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/D-m_ztzUOKI" title="다못 공연 영상 1" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="video-box">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/Rt1iwJ-KgHs" title="다못 공연 영상 2" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="kicker"><span class="bar"></span><h2>Contact</h2></div>
+    <h2>공연 · 협업 문의</h2>
+    <p>다못의 공연과 협업 제안은 아래 연락처로 부탁드립니다.</p>
+    <div class="contact-links">
+      <a class="contact-btn" href="tel:01088484520">010-8848-4520</a>
+      <a class="contact-btn" href="https://www.instagram.com/da_mot_/" target="_blank" rel="noopener">Instagram @da_mot_</a>
+    </div>
+  </div>
+</section>
+
+<footer>국악현악앙상블 다못 · Da Mot Ensemble</footer>
+
+</body>
+</html>
